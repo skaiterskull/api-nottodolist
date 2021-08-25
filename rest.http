@@ -1,0 +1,22 @@
+# API list not to do app
+
+
+### Fetch all tickets
+GET http://localhost:8000/api/v1
+
+
+### Fetch single ticket
+# GET http://localhost:8000/api/v1/ticketId
+
+### Create new ticket
+POST http://localhost:8000/api/v1
+Content-Type:  application/json
+
+{
+    "email": "hendra.here@yahoo.com",
+    "password": "fasfsafsa"
+}
+
+
+### Delete ticket
+DELETE  http://localhost:8000/api/v1
