@@ -13,10 +13,25 @@ POST http://localhost:8000/api/v1
 Content-Type:  application/json
 
 {
-    "email": "hendra.here@yahoo.com",
-    "password": "fasfsafsa"
+    "task": "Watching TV",
+    "hr": "10"
+}
+
+
+### Update ticket
+PATCH http://localhost:8000/api/v1
+Content-Type:  application/json
+
+{
+    "_id": "hendra.here@yahoo.com",
+    "todo": true
 }
 
 
 ### Delete ticket
 DELETE  http://localhost:8000/api/v1
+Content-Type:  application/json
+
+{
+    "_id": "hendra.here@yahoo.com"
+}

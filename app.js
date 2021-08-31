@@ -1,9 +1,17 @@
 import express from "express";
 const app = express();
+import morgan from "morgan";
+
 const PORT = 8000;
 
+//Connect to mongoDB
+import mongoClient from "./src/config/db.js";
+mongoClient();
+
+//middlewares
 app.use(express.urlencoded());
 app.use(express.json());
+app.use(morgan("tiny"));
 
 //load modules
 import routers from "./src/router.js";
