@@ -8,8 +8,7 @@ router.all("/", (req, res, next) => {
   // res.send("ok");
   next();
 });
-
-// return all the task
+// RETURN ALL THE TAKS-------------------------------------------------------------------------
 router.get("/", async (req, res) => {
   try {
     const result = await displayAllTask();
@@ -24,8 +23,7 @@ router.get("/", async (req, res) => {
     });
   }
 });
-
-// receive new task and store in database
+//INSERT NEW TASK------------------------------------------------------------------------------
 router.post("/", async (req, res) => {
   console.log(req.body);
   try {
@@ -41,16 +39,14 @@ router.post("/", async (req, res) => {
     });
   }
 });
-
-// update the data in the database
+//UPDATE TASK---------------------------------------------------------------------------------
 router.patch("/", (req, res) => {
   console.log(req.body);
   res.json({
     message: "return from patch",
   });
 });
-
-//delete the data in the database based on the ids received
+//DELETE TASK----------------------------------------------------------------------------------
 router.delete("/", (req, res) => {
   console.log(req.body);
   res.json({

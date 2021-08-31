@@ -16,9 +16,8 @@ POST http://localhost:8000/api/v1
 Content-Type:  application/json
 
 {
-"task": "Fishing",
-    "hr": "20",
-    "aada": "dasdas"
+    "task": "Jogging",
+    "hr": "10"
 }
 
 
