@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-import { insertTask } from "./models/TaskList.model.js";
+import { insertTask, displayAllTask } from "./models/TaskList.model.js";
 
 router.all("/", (req, res, next) => {
   console.log("got hit");
@@ -10,20 +10,36 @@ router.all("/", (req, res, next) => {
 });
 
 // return all the task
-router.get("/", (req, res) => {
-  res.json({
-    message: "return from get",
-  });
+router.get("/", async (req, res) => {
+  try {
+    const result = await displayAllTask();
+    res.json({
+      status: "success",
+      result,
+    });
+  } catch (error) {
+    res.json({
+      status: "error",
+      message: "Unable to add the ticket, please try again later",
+    });
+  }
 });
 
 // receive new task and store in database
 router.post("/", async (req, res) => {
   console.log(req.body);
-  const result = await insertTask(req.body);
-  res.json({
-    message: "return from post",
-    result,
-  });
+  try {
+    const result = await insertTask(req.body);
+    res.json({
+      message: "return from post",
+      result,
+    });
+  } catch (error) {
+    res.json({
+      status: "error",
+      message: "Unable to add the ticket, please try again later",
+    });
+  }
 });
 
 // update the data in the database

@@ -1,10 +1,10 @@
-import TicketSchema from "./TaskList.schema.js";
+import TaskSchema from "./TaskList.schema.js";
 
 // create Task
 
 export const insertTask = (newTask) => {
   return new Promise((resolve, reject) => {
-    TicketSchema(newTask)
+    TaskSchema(newTask)
       .save()
       .then((data) => {
         resolve(data);
@@ -16,6 +16,16 @@ export const insertTask = (newTask) => {
 };
 
 //read all Task List
+export const displayAllTask = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const result = await TaskSchema.find();
+      resolve(result);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
 
 //get single Task
 

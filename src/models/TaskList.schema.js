@@ -4,12 +4,12 @@ const TaskListSchema = mongoose.Schema(
   {
     task: {
       type: String,
-      require: true,
+      required: true,
       default: "",
     },
     hr: {
       type: Number,
-      require: true,
+      required: true,
       default: "",
     },
   },
