@@ -1,19 +1,29 @@
 import express from "express";
 const router = express.Router();
 
-import { insertTask, displayAllTask } from "./models/TaskList.model.js";
+import {
+  insertTask,
+  displayAllTask,
+  getSingleTask,
+} from "./models/TaskList.model.js";
 
 router.all("/", (req, res, next) => {
   console.log("got hit");
   // res.send("ok");
   next();
 });
-// RETURN ALL THE TAKS-------------------------------------------------------------------------
-router.get("/", async (req, res) => {
+// RETURN ALL THE TAKS AND A SINGLE TASK BY ID (OPTIONAL)--------------------------------------
+router.get("/:_id?", async (req, res) => {
   try {
-    const result = await displayAllTask();
+    const { _id } = req.params;
+    let result = null;
+    if (_id) {
+      result = await getSingleTask(_id);
+    } else {
+      result = await displayAllTask();
+    }
     res.json({
-      status: "success",
+      message: result?._id ? "Task found" : "Task not found",
       result,
     });
   } catch (error) {
@@ -23,6 +33,14 @@ router.get("/", async (req, res) => {
     });
   }
 });
+// RETURN SINGLE TASK--------------------------------------------------------------------------
+// router.get("/:_id?", async (req, res) => {
+
+//   const result = await getSingleTask(_id);
+//   console.log(_id);
+
+// });
+
 //INSERT NEW TASK------------------------------------------------------------------------------
 router.post("/", async (req, res) => {
   console.log(req.body);

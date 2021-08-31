@@ -9,8 +9,19 @@ export const displayAllTask = async () => {
     return error;
   }
 };
+//RETURN SINGLE TASK-------------------------------------------------------------------------------
+export const getSingleTask = async (_id) => {
+  try {
+    const result = await TaskSchema.findById(_id);
+    return result;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
 //INSERT TASK-------------------------------------------------------------------------------------
-export const insertTask = async (newTask) => {
+export const insertTask = (newTask) => {
   return new Promise((resolve, reject) => {
     TaskSchema(newTask)
       .save()

@@ -1,27 +1,19 @@
 # API list not to do app
 
 
-### Fetch all lists
-GET http://localhost:8000/api/v1
+### FETCH ALL TASKS AND A SINGLE TASK BY ID (OPTIONAL)
+GET http://localhost:8000/api/v1/FFFF
 
-
-# ## Fetch single lists
-# GET http://localhost:8000/api/v1/ticketId
-
-
-
-
-### Create new list and update
+### CREATE NEW LIST AND INSERT
 POST http://localhost:8000/api/v1
 Content-Type:  application/json
 
 {
-    "task": "Jogging",
-    "hr": "10"
+    "task": "Eating",
+    "hr": "20"
 }
 
-
-### Update list
+### UPDATE TASK
 PATCH http://localhost:8000/api/v1
 Content-Type:  application/json
 
@@ -31,7 +23,7 @@ Content-Type:  application/json
 }
 
 
-### Delete list
+### DELETE TASK
 DELETE  http://localhost:8000/api/v1
 Content-Type:  application/json
 
