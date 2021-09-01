@@ -56,7 +56,11 @@ export const updateTask = async ({ id, todo }) => {
 //DELETE TASK-------------------------------------------------------------------------------------
 export const deleteTask = async (ids) => {
   try {
-    const result = await TaskSchema.deleteOne(ids);
+    const result = await TaskSchema.deleteMany({
+      _id: {
+        $in: ids,
+      },
+    });
     return result;
   } catch (error) {
     console.log(error);

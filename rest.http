@@ -9,8 +9,8 @@ POST http://localhost:8000/api/v1/
 Content-Type:  application/json
 
 {
-    "task": "Eating",
-    "hr": "20"
+    "task": "Fishing",
+    "hr": "10"
 }
 
 ### UPDATE TASK
@@ -27,5 +27,6 @@ DELETE  http://localhost:8000/api/v1
 Content-Type:  application/json
 
 {
-    "_id": "612ea685824e9eac5b181ed0"
+    "ids": [ "612ed3ab6f89efba35af129b"
+    ]
 }

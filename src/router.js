@@ -71,11 +71,12 @@ router.patch("/", async (req, res) => {
     });
   }
 });
-//DELETE TASK----------------------------------------------------------------------------------
+//DELETE  TASK----------------------------------------------------------------------------------
 router.delete("/", async (req, res) => {
   try {
+    const { ids } = req.body;
     console.log(req.body);
-    const result = await deleteTask(req.body);
+    const result = await deleteTask(ids);
     console.log(result);
     if (result?.deletedCount > 0) {
       return res.json({
@@ -89,7 +90,7 @@ router.delete("/", async (req, res) => {
     });
   } catch (error) {
     res.json({
-      status: "error",
+      status: "Error",
       message: "Unable to delete the task, please try again later",
     });
   }
