@@ -34,8 +34,15 @@ export const insertTask = (newTask) => {
   });
 };
 
-//get single Task
-
 //update Task
 
-//delete Task
+//DELETE TASK-------------------------------------------------------------------------------------
+export const deleteTask = async (ids) => {
+  try {
+    const result = await TaskSchema.deleteOne(ids);
+    return result;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};

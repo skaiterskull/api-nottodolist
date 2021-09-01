@@ -5,6 +5,7 @@ import {
   insertTask,
   displayAllTask,
   getSingleTask,
+  deleteTask,
 } from "./models/TaskList.model.js";
 
 router.all("/", (req, res, next) => {
@@ -19,13 +20,16 @@ router.get("/:_id?", async (req, res) => {
     let result = null;
     if (_id) {
       result = await getSingleTask(_id);
+      res.json({
+        message: result._id ? "Task found" : "Task not found",
+        result,
+      });
     } else {
       result = await displayAllTask();
+      res.json({
+        result,
+      });
     }
-    res.json({
-      message: result?._id ? "Task found" : "Task not found",
-      result,
-    });
   } catch (error) {
     res.json({
       status: "error",
@@ -33,14 +37,6 @@ router.get("/:_id?", async (req, res) => {
     });
   }
 });
-// RETURN SINGLE TASK--------------------------------------------------------------------------
-// router.get("/:_id?", async (req, res) => {
-
-//   const result = await getSingleTask(_id);
-//   console.log(_id);
-
-// });
-
 //INSERT NEW TASK------------------------------------------------------------------------------
 router.post("/", async (req, res) => {
   console.log(req.body);
@@ -65,10 +61,19 @@ router.patch("/", (req, res) => {
   });
 });
 //DELETE TASK----------------------------------------------------------------------------------
-router.delete("/", (req, res) => {
+router.delete("/", async (req, res) => {
   console.log(req.body);
+  const result = await deleteTask(req.body);
+  console.log(result);
+  if (result?.deletedCount > 0) {
+    return res.json({
+      status: "Success",
+      message: "The task has been deleted",
+    });
+  }
   res.json({
-    message: "return from delete",
+    status: "Failed",
+    message: "Please try again",
   });
 });
 

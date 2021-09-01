@@ -2,10 +2,10 @@
 
 
 ### FETCH ALL TASKS AND A SINGLE TASK BY ID (OPTIONAL)
-GET http://localhost:8000/api/v1/FFFF
+GET http://localhost:8000/api/v1/
 
 ### CREATE NEW LIST AND INSERT
-POST http://localhost:8000/api/v1
+POST http://localhost:8000/api/v1/
 Content-Type:  application/json
 
 {
@@ -28,5 +28,5 @@ DELETE  http://localhost:8000/api/v1
 Content-Type:  application/json
 
 {
-    "_id": "hendra.here@yahoo.com"
+    "_id": "612ea685824e9eac5b181ed0"
 }
