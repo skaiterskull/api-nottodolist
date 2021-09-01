@@ -20,7 +20,7 @@ export const getSingleTask = async (_id) => {
   }
 };
 
-//INSERT TASK-------------------------------------------------------------------------------------
+//INSERT TASK--------------------------------------------------------------------------------------
 export const insertTask = (newTask) => {
   return new Promise((resolve, reject) => {
     TaskSchema(newTask)
@@ -34,7 +34,7 @@ export const insertTask = (newTask) => {
   });
 };
 
-//UPDATE TASK
+//UPDATE TASK--------------------------------------------------------------------------------------
 export const updateTask = async ({ id, todo }) => {
   try {
     const result = await TaskSchema.findByIdAndUpdate(

@@ -1,6 +1,8 @@
 import express from "express";
 const app = express();
 import morgan from "morgan";
+import cors from "cors";
+import helmet from "helmet";
 
 const PORT = 8000;
 
@@ -12,6 +14,8 @@ mongoClient();
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(morgan("tiny"));
+app.use(cors());
+app.use(helmet());
 
 //load modules
 import routers from "./src/router.js";
