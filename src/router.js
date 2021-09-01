@@ -6,6 +6,7 @@ import {
   displayAllTask,
   getSingleTask,
   deleteTask,
+  updateTask,
 } from "./models/TaskList.model.js";
 
 router.all("/", (req, res, next) => {
@@ -54,27 +55,44 @@ router.post("/", async (req, res) => {
   }
 });
 //UPDATE TASK---------------------------------------------------------------------------------
-router.patch("/", (req, res) => {
+router.patch("/", async (req, res) => {
   console.log(req.body);
-  res.json({
-    message: "return from patch",
-  });
+  const result = await updateTask(req.body);
+
+  if (result?._id) {
+    res.json({
+      message: "Success, task has been updated",
+      result,
+    });
+  } else {
+    res.json({
+      message: "Data is not found",
+      result,
+    });
+  }
 });
 //DELETE TASK----------------------------------------------------------------------------------
 router.delete("/", async (req, res) => {
-  console.log(req.body);
-  const result = await deleteTask(req.body);
-  console.log(result);
-  if (result?.deletedCount > 0) {
-    return res.json({
-      status: "Success",
-      message: "The task has been deleted",
+  try {
+    console.log(req.body);
+    const result = await deleteTask(req.body);
+    console.log(result);
+    if (result?.deletedCount > 0) {
+      return res.json({
+        status: "Success",
+        message: "The task has been deleted",
+      });
+    }
+    res.json({
+      status: "Failed",
+      message: "Please try again",
+    });
+  } catch (error) {
+    res.json({
+      status: "error",
+      message: "Unable to delete the task, please try again later",
     });
   }
-  res.json({
-    status: "Failed",
-    message: "Please try again",
-  });
 });
 
 export default router;

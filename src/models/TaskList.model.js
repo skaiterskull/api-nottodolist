@@ -34,7 +34,24 @@ export const insertTask = (newTask) => {
   });
 };
 
-//update Task
+//UPDATE TASK
+export const updateTask = async ({ id, todo }) => {
+  try {
+    const result = await TaskSchema.findByIdAndUpdate(
+      { _id: id },
+      {
+        todo,
+      },
+      {
+        new: true,
+      }
+    );
+    return result;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
 
 //DELETE TASK-------------------------------------------------------------------------------------
 export const deleteTask = async (ids) => {

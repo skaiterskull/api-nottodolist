@@ -18,10 +18,9 @@ PATCH http://localhost:8000/api/v1
 Content-Type:  application/json
 
 {
-    "_id": "hendra.here@yahoo.com",
-    "todo": true
+    "id": "612ddc02f379984ea09f2504",
+    "todo": false
 }
-
 
 ### DELETE TASK
 DELETE  http://localhost:8000/api/v1
