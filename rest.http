@@ -9,7 +9,7 @@ POST http://localhost:8000/api/v1/
 Content-Type:  application/json
 
 {
-    "task": "Fishing",
+    "task": "Playing",
     "hr": "10"
 }
 
@@ -27,6 +27,15 @@ DELETE  http://localhost:8000/api/v1
 Content-Type:  application/json
 
 {
-    "ids": [ "612ed3ab6f89efba35af129b"
+    "_id": [ "612f0a0d8534e711c1d46c72"
     ]
+}
+
+
+### INSERT USER
+POST http://localhost:8000/api/v1/user
+Content-Type:  application/json
+
+{
+    "userName": "Wijaya"
 }

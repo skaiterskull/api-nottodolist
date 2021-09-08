@@ -18,9 +18,10 @@ app.use(cors());
 app.use(helmet());
 
 //load modules
-import routers from "./src/router.js";
-
-app.use("/api/v1", routers);
+import taskRouter from "./src/routers/taskRouter.js";
+import userRouter from "./src/routers/userRouter.js";
+app.use("/api/v1/task", taskRouter);
+app.use("/api/v1/user", userRouter);
 
 app.use("/", (req, res) => {
   res.send("You have reached the API of not to do list application");
