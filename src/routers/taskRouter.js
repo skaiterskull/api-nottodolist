@@ -17,17 +17,13 @@ router.all("/", (req, res, next) => {
 // RETURN ALL THE TAKS AND A SINGLE TASK BY ID (OPTIONAL)--------------------------------------
 router.get("/:_id?", async (req, res) => {
   try {
+    const { authorization } = req.headers;
     const { _id } = req.params;
     let result = null;
     if (_id) {
       result = await getSingleTask(_id);
-      res.json({
-        status: "Success",
-        message: result._id ? "Task found" : "Task not found",
-        result,
-      });
     } else {
-      result = await displayAllTask();
+      result = await displayAllTask(authorization);
       res.json({
         status: "Success",
         message: "Data has been fetched",

@@ -2,7 +2,8 @@
 
 
 ### FETCH ALL TASKS AND A SINGLE TASK BY ID (OPTIONAL)
-GET http://localhost:8000/api/v1/
+GET http://localhost:8000/api/v1/task
+Authorization: 61382b6199141fee8d9e4d77
 
 ### CREATE NEW LIST AND INSERT
 POST http://localhost:8000/api/v1/
@@ -37,5 +38,14 @@ POST http://localhost:8000/api/v1/user
 Content-Type:  application/json
 
 {
-    "userName": "Wijaya"
+    "userName": "Hendra"
+}
+
+
+###  USER
+POST http://localhost:8000/api/v1/user/register
+Content-Type:  application/json
+
+{
+    "userName": "Juwita"
 }

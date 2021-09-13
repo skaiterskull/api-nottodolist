@@ -27,5 +27,5 @@ All the task api's will follow the `{rootUrl}/api/v1/task` patterns
 All the api's will follow the `{rootUrl}/api/v1/task` patterns
 | # | Method | Path | Description |
 | --- | -------- | ------ | ------------------------------------------------------------------- |
-| 1. | `POST` | `/` | `@_id` Login|
+| 1. | `POST` | `/login` | `@_id` Login| userName will be checked in the database and return the info |
 | 2. | `POST` | `/register` | `@_id` create new user|

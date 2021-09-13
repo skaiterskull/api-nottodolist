@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { insertUser } from "../models/user/User.model.js";
+import { insertUser, getUser } from "../models/user/User.model.js";
 
 router.all("/", (req, res, next) => {
   console.log("got hit");
@@ -8,6 +8,34 @@ router.all("/", (req, res, next) => {
   next();
 });
 
+// login user
+router.post("/", async (req, res) => {
+  try {
+    const result = await getUser(req.body);
+
+    if (result?._id) {
+      return res.json({
+        status: "Success",
+        message: "User found, proceed to login page",
+        result,
+      });
+    } else {
+      return res.json({
+        status: "Error",
+        message: "User not found, register needed",
+        result,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({
+      status: "Error",
+      message: "Unable to login, please try again later",
+    });
+  }
+});
+
+//Create new user
 router.post("/register", async (req, res) => {
   console.log(req.body);
   try {

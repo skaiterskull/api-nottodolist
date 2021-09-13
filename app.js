@@ -20,7 +20,8 @@ app.use(helmet());
 //load modules
 import taskRouter from "./src/routers/taskRouter.js";
 import userRouter from "./src/routers/userRouter.js";
-app.use("/api/v1/task", taskRouter);
+import { userAuth } from "./src/middlewares/auth.middleware.js";
+app.use("/api/v1/task", userAuth, taskRouter);
 app.use("/api/v1/user", userRouter);
 
 app.use("/", (req, res) => {
