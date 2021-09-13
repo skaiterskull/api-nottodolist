@@ -1,10 +1,13 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 const app = express();
 import morgan from "morgan";
 import cors from "cors";
 import helmet from "helmet";
+import path from "path";
 
-const PORT = 8000;
+const PORT = process.env.NODE_PORT || 5000;
 
 //Connect to mongoDB
 import mongoClient from "./src/config/db.js";
@@ -24,8 +27,12 @@ import { userAuth } from "./src/middlewares/auth.middleware.js";
 app.use("/api/v1/task", userAuth, taskRouter);
 app.use("/api/v1/user", userRouter);
 
+//serve static files
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "/frontend/build")));
+
 app.use("/", (req, res) => {
-  res.send("You have reached the API of not to do list application");
+  res.sendFile(path.join(__dirname, "/frontend/build", "index.html"));
 });
 
 app.listen(PORT, (error) => {
