@@ -17,6 +17,12 @@ const TaskListSchema = mongoose.Schema(
       required: true,
       default: true,
     },
+    userid: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      default: null,
+      ref: "User",
+    },
   },
   {
     timestamps: true,

@@ -2,14 +2,15 @@
 
 
 ### FETCH ALL TASKS AND A SINGLE TASK BY ID (OPTIONAL)
-GET http://localhost:8000/api/v1/
+GET http://localhost:8000/api/v1/task
+Authorization: 61382b6199141fee8d9e4d77
 
 ### CREATE NEW LIST AND INSERT
 POST http://localhost:8000/api/v1/
 Content-Type:  application/json
 
 {
-    "task": "Fishing",
+    "task": "Playing",
     "hr": "10"
 }
 
@@ -27,6 +28,24 @@ DELETE  http://localhost:8000/api/v1
 Content-Type:  application/json
 
 {
-    "ids": [ "612ed3ab6f89efba35af129b"
+    "_id": [ "612f0a0d8534e711c1d46c72"
     ]
+}
+
+
+### INSERT USER
+POST http://localhost:8000/api/v1/user
+Content-Type:  application/json
+
+{
+    "userName": "Hendra"
+}
+
+
+###  USER
+POST http://localhost:8000/api/v1/user/register
+Content-Type:  application/json
+
+{
+    "userName": "Juwita"
 }

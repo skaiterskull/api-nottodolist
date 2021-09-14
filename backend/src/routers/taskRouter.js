@@ -7,7 +7,7 @@ import {
   getSingleTask,
   deleteTask,
   updateTask,
-} from "./models/TaskList.model.js";
+} from "../models/task/TaskList.model.js";
 
 router.all("/", (req, res, next) => {
   console.log("got hit");
@@ -17,17 +17,16 @@ router.all("/", (req, res, next) => {
 // RETURN ALL THE TAKS AND A SINGLE TASK BY ID (OPTIONAL)--------------------------------------
 router.get("/:_id?", async (req, res) => {
   try {
+    const { authorization } = req.headers;
     const { _id } = req.params;
     let result = null;
     if (_id) {
       result = await getSingleTask(_id);
-      res.json({
-        message: result._id ? "Task found" : "Task not found",
-        result,
-      });
     } else {
-      result = await displayAllTask();
+      result = await displayAllTask(authorization);
       res.json({
+        status: "Success",
+        message: "Data has been fetched",
         result,
       });
     }
@@ -44,7 +43,8 @@ router.post("/", async (req, res) => {
   try {
     const result = await insertTask(req.body);
     res.json({
-      message: "return from post",
+      status: "Success",
+      message: "Success, task has been added",
       result,
     });
   } catch (error) {
@@ -61,11 +61,13 @@ router.patch("/", async (req, res) => {
 
   if (result?._id) {
     res.json({
+      status: "Success",
       message: "Success, task has been updated",
       result,
     });
   } else {
     res.json({
+      status: "Failed",
       message: "Data is not found",
       result,
     });
@@ -74,14 +76,15 @@ router.patch("/", async (req, res) => {
 //DELETE  TASK--------------------------------------------------------------------------------
 router.delete("/", async (req, res) => {
   try {
-    const { ids } = req.body;
+    // const { ids } = req.body;
     console.log(req.body);
-    const result = await deleteTask(ids);
+    const result = await deleteTask(req.body);
     console.log(result);
     if (result?.deletedCount > 0) {
       return res.json({
         status: "Success",
         message: "The task has been deleted",
+        result,
       });
     }
     res.json({

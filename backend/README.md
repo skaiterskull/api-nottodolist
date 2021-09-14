@@ -11,7 +11,9 @@ This is the backend project build with Node, Express and MongoDB for the React f
 
 ## APIs
 
-All the api's will follow the `{rootUrl/api/v1}` patterns
+### Task api
+
+All the task api's will follow the `{rootUrl}/api/v1/task` patterns
 
 | #   | Method   | Path   | Description                                                                                                   |
 | --- | -------- | ------ | ------------------------------------------------------------------------------------------------------------- |
@@ -19,3 +21,11 @@ All the api's will follow the `{rootUrl/api/v1}` patterns
 | 2.  | `POST`   | `/`    | Expects task object stores tas in the database and return the stored data or null if unable to store the data |
 | 3.  | `PATCH`  | `/`    | Expects id and the instruction on what to update in the database                                              |
 | 4.  | `DELETE` | `/`    | Expects id and deletes data from the database and returns success or unsuccess information                    |
+
+### User api
+
+All the api's will follow the `{rootUrl}/api/v1/task` patterns
+| # | Method | Path | Description |
+| --- | -------- | ------ | ------------------------------------------------------------------- |
+| 1. | `POST` | `/login` | `@_id` Login| userName will be checked in the database and return the info |
+| 2. | `POST` | `/register` | `@_id` create new user|

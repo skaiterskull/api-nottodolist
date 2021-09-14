@@ -1,9 +1,9 @@
 import TaskSchema from "./TaskList.schema.js";
 
 //RETURN ALL THE TASK------------------------------------------------------------------------------
-export const displayAllTask = async () => {
+export const displayAllTask = async (userid) => {
   try {
-    const result = await TaskSchema.find();
+    const result = await TaskSchema.find({ userid });
     return result;
   } catch (error) {
     return error;
@@ -54,7 +54,7 @@ export const updateTask = async ({ id, todo }) => {
 };
 
 //DELETE TASK-------------------------------------------------------------------------------------
-export const deleteTask = async (ids) => {
+export const deleteTask = async (ids, userid) => {
   try {
     const result = await TaskSchema.deleteMany({
       _id: {
