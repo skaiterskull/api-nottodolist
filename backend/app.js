@@ -18,7 +18,7 @@ app.use(express.urlencoded());
 app.use(express.json());
 app.use(morgan("tiny"));
 app.use(cors());
-app.use(helmet());
+// app.use(helmet());
 
 //load modules
 import taskRouter from "./src/routers/taskRouter.js";
