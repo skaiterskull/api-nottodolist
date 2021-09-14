@@ -7,7 +7,7 @@ import cors from "cors";
 import helmet from "helmet";
 import path from "path";
 
-const PORT = process.env.NODE_PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
 //Connect to mongoDB
 import mongoClient from "./src/config/db.js";
